@@ -6,8 +6,8 @@ android {
         applicationId "com.telecorp.teledev.lukaapp"
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 8
-        versionName "2.5"
+        versionCode 9
+        versionName "2.6"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }

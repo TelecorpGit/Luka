@@ -24,9 +24,7 @@ public class MainActivity extends ToolbarActivity {
     String platform;
     String token;
     private static final String TAG = "MainActivity";
-    String txtUrl ,txtRefrigUID , txtCode;
-    private MediaPlayer mediaPlayer;
-    String bgWork,bgLink,bgRefrigUID, bgCode;
+    String txtUrl ,txtRefrigUID , txtCode , txtType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +43,7 @@ public class MainActivity extends ToolbarActivity {
             txtUrl = getIntent().getStringExtra("link"); //เปลี่ยน เป็น Pushnotify แทน
             txtRefrigUID = getIntent().getStringExtra("RefrigUID");
             txtCode = getIntent().getStringExtra("code");
+            txtType =  getIntent().getStringExtra("type");
         }
 
 

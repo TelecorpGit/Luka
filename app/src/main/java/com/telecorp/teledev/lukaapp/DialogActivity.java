@@ -35,6 +35,7 @@ public class DialogActivity extends Activity {
     private String msgLink;
     private String msgRefrigUID;
     private String msgCode;
+    private String msgType;
     private static SoundPool soundPool;
     public static boolean isplayingAudio=false;
     AlertDialog.Builder alertDialogBuilder;
@@ -53,15 +54,21 @@ public class DialogActivity extends Activity {
         msgLink = getIntent().getStringExtra("link");
         msgRefrigUID = getIntent().getStringExtra("RefrigUID");
         msgCode = getIntent().getStringExtra("code");
+        msgType = getIntent().getStringExtra("type");
 
         SharedPreferences shCheckSound = getSharedPreferences("STATUS_SOUND",MODE_PRIVATE);
         statusSound = shCheckSound.getInt("firstTime", 0);
 
-        if (statusSound == 0){
-            dialogDisplay();
-        }else {
-            mediaplayer.stop();
-            dialogDisplay();
+        try {
+            if (statusSound == 0){
+                dialogDisplay();
+            }else {
+                mediaplayer.stop();
+                dialogDisplay();
+            }
+
+        }catch (Exception e){
+           e.printStackTrace();
         }
 
     }
@@ -90,8 +97,8 @@ public class DialogActivity extends Activity {
             }
         });
 
-        TextView titel = dialog.findViewById(R.id.txt_title);
-        titel.setText(msgTitle);
+        TextView title = dialog.findViewById(R.id.txt_title);
+        title.setText(msgTitle);
         TextView body = dialog.findViewById(R.id.txt_body);
         body.setText(msgBody);
 

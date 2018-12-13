@@ -34,14 +34,12 @@ public class LukaFirebaseMessagingService  extends FirebaseMessagingService {
 
     private static final String TAG = "Message";
     public String dataEntry;
-    String txtTitle, strtitle;
-    String txtBody, strbody;
-    String txtRefrigUID ,customLink;
-    String txtCode;
+    public String txtTitle;
+    public String txtBody;
+    public String txtRefrigUID ,customLink;
+    public String txtCode;
     public String content;
-    int working;
-    private MediaPlayer mediaPlayer;
-    int num;
+    public String txtType;
 
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -63,6 +61,8 @@ public class LukaFirebaseMessagingService  extends FirebaseMessagingService {
             customLink = data.get("link");
             txtRefrigUID = data.get("RefrigUID");
             txtCode = data.get("code");
+            txtType = data.get("type");
+
 
 
             workingOn();
@@ -77,12 +77,17 @@ public class LukaFirebaseMessagingService  extends FirebaseMessagingService {
 
 
     private void workingOn() {
-        sendNotification(txtTitle, txtBody ,customLink,txtRefrigUID, txtCode);
-        dialogMessage( txtTitle,  txtBody,  customLink,  txtRefrigUID,  txtCode);
+        if (txtType.equals("Emergency")){
+            dialogMessage( txtTitle,  txtBody,  customLink,  txtRefrigUID,  txtCode , txtType);
+            sendNotification(txtTitle, txtBody ,customLink,txtRefrigUID, txtCode);
+        }else {
+            sendNotification(txtTitle, txtBody ,customLink,txtRefrigUID, txtCode);
+        }
+
     }
 
 
-    private void dialogMessage(String txtTitle, String txtBody, String customLink, String txtRefrigUID, String txtCode) {
+    private void dialogMessage(String txtTitle, String txtBody, String customLink, String txtRefrigUID, String txtCode, String txtType) {
 
         Intent intent=new Intent(this,DialogActivity.class);
         intent.putExtra("title", txtTitle);
@@ -90,6 +95,7 @@ public class LukaFirebaseMessagingService  extends FirebaseMessagingService {
         intent.putExtra("link", customLink);
         intent.putExtra("RefrigUID", txtRefrigUID);
         intent.putExtra("code", txtCode);
+        intent.putExtra("type", txtType);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
