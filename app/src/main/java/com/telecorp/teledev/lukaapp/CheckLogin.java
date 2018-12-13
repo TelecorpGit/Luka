@@ -89,6 +89,9 @@ public class CheckLogin extends Activity {
 //                    loadingDialog = ProgressDialog.show(CheckLogin.this,"คุณเคยเข้าสู่ระบบไว้แล้ว !",
 //                            "กำลังเข้าสู่ระบบ, กรุณารอสักครู่...", false, false);
                     LoginAuto(checkUsername, checkPassword);
+                }else {
+                    Intent iLogin = new Intent(this, LoginActivity.class);
+                    startActivity(iLogin);
                 }
             }
         }else {

@@ -84,6 +84,8 @@ public class LukaFirebaseMessagingService  extends FirebaseMessagingService {
             sendNotification(txtTitle, txtBody ,customLink,txtRefrigUID, txtCode);
         }
 
+
+
     }
 
 
